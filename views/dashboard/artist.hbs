@@ -1,0 +1,35 @@
+{{> admin/header}}
+
+{{> admin/sidebar}}
+
+{{> admin/navbar}}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <button class="btn btn-outline-primary btn-md mb-3" onclick="window.location.href='/add-artist'"><i
+                class="mdi mdi-plus"></i> Add Artist</button>
+        <div class="row">
+            {{#each artists}}
+            <div class="col-xl-3 col-sm-6 grid-margin">
+                <div class="card p-3">
+                    <div class="text-center">
+                        <img class="img-fluid mb-3" src="{{this.image}}" alt="">
+                        <h3>{{this.name}}</h3>
+                    </div>
+                    <p>{{this.about}}</p>
+                    <div class="card-footer p-0">
+                        <a href="/edit-artist/{{this.id}}">
+                            <button class="btn btn-outline-primary btn-block mb-2">Edit</button>
+                        </a>
+                        <a href="/delete-artist/{{this.id}}">
+                            <button class="btn btn-outline-danger btn-block">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+{{> admin/footer}}

@@ -1,0 +1,33 @@
+{{> admin/header}}
+
+{{> admin/sidebar}}
+
+{{> admin/navbar}}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <button class="btn btn-outline-primary btn-md mb-3" onclick="window.location.href='/add-musics'"><i
+                class=" mdi mdi-plus"></i> Add Music</button>
+        <div class="row">
+            {{!-- music template --}}
+            {{#each sound}}
+            <div class="col-xl-3 col-sm-12 grid-margin">
+                <div class="card text-center p-3" id="music-card">
+                    <h3>{{this.title}}</h3>
+                    <audio id="my-music" controls>
+                        <source src="{{this.loc}}">
+                    </audio>
+                    <div class="card-footer p-0">
+                        <a href="/delete-musics/{{this.id}}">
+                            <button class="btn btn-outline-danger btn-block">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{!-- end of music template --}}
+        </div>
+    </div>
+</div>
+
+{{> admin/footer}}

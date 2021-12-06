@@ -1,0 +1,48 @@
+<body>
+    <div class="nav" id="top">
+        <video id="bg-vid" autoplay loop muted src="/public/vid/banner.mp4"></video>
+        <div class="bg-trans"></div>
+        <div class="navbar" id="navbar">
+            <a href="#" class="active">
+                <img class="logo" src="/public/images/logo.svg" alt="" />
+            </a>
+            <div class="menu">
+                <div class="menu-bar" id="menu-1">
+                    <a class="a" href="#explore">Explore</a>
+                    <a class="a" href="#bottom">Trends</a>
+                    <a class="a" href="#middle">Listen</a>
+                </div>
+                <div class="menu-bar" id="menu-2">
+                    {{#if isLogin}}
+                    <a class="pict" href="javascript:dropdown()">
+                        <img src="{{user.image}}" alt="Profile Pic" style="max-height: 35px; border-radius: 50%">
+                        {{user.name}}
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="/profile"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                    {{else}}
+                    <a href="/register">Register</a>
+                    <a href="/login">
+                        <button class="btn-login">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <br />
+        <span id="banner">SHOW THE TRUE COLOR OF YOURS</span>
+        <div class="started" id="arrow-down">
+            <a href="#middle">
+                <i class="fas fa-chevron-down fa-5x"></i>
+            </a>
+        </div>
+    </div>

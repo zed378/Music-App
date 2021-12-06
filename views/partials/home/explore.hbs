@@ -1,0 +1,23 @@
+<div class="explore" id="explore">
+    <div class="explore-left">
+        <h1 style="margin-bottom: 30px">Find Your Desire Music</h1>
+        <form>
+            <input type="text" name="search" />
+            <button type="submit"><i class="fa fa-search"></i> Search</button>
+        </form>
+    </div>
+    <div class="explore-right">
+        <div class="list">
+            <ol>
+                {{#each mus}}
+                <li>
+                    {{this.title}}
+                    <audio id="list" controls>
+                        <source src="{{this.sound}}" />
+                    </audio>
+                </li>
+                {{/each}}
+            </ol>
+        </div>
+    </div>
+</div>

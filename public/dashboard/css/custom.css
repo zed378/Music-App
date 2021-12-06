@@ -1,0 +1,91 @@
+#my-music {
+  width: auto;
+  height: 30px;
+  margin: 10px 0;
+}
+
+#music-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-footer > a:hover {
+  text-decoration: none;
+}
+
+.music-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-music {
+  display: flex;
+  gap: 10px;
+}
+
+.title-music > a:hover {
+  text-decoration: none;
+}
+
+#music-playlist {
+  width: 175px;
+  height: 25px;
+}
+
+.friend-music {
+  height: 32rem;
+  overflow: auto;
+}
+
+.friend-music > ol > li > div > a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.friend-music > ol > li > div {
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#friend-music {
+  width: 225px;
+  height: 25px;
+}
+
+.col-lg-12 > a:hover {
+  text-decoration: none;
+}
+
+.under > a {
+  text-decoration: none;
+}
+
+.playlist-btn {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.playlist-btn > a {
+  width: 50%;
+}
+
+#btn {
+  width: 80%;
+}
+
+.genre-btn {
+  display: flex;
+}
+
+.genre-btn > a {
+  width: 50%;
+  text-align: center;
+}
+
+.genre-btn > a > button {
+  width: 90%;
+}

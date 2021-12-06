@@ -1,0 +1,49 @@
+{{> addedit/header}}
+
+<div class="boxcontainer">
+    <video id="bg-vid" autoplay loop muted src="/public/vid/banner.mp4"></video>
+    <div class="bg-trans"></div>
+    <div class="box" style="height: 65%; width: 50%">
+        <h1>{{title}}</h1>
+        <form id="edit-form" action="/edit-profile" method="post" enctype="multipart/form-data">
+            <input type="hidden" value="{{user.id}}" name="id">
+            <div class="left">
+                <div class="file-input-group text-start">
+                    <div id="preview-thumbnail"></div>
+                    <input type="hidden" value="{{user.image}}" name="oldImage">
+                    <input type="hidden" value="{{user.image}}" id="url-thumbnail">
+                    <input type="file" hidden id="file" name="image" onchange="handleChange()" />
+                    <label id="attach" for="file"><i class="fas fa-paperclip"></i> Attach Your Thumbnail
+                    </label>
+                </div>
+            </div>
+            <div class="right">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" value="{{user.name}}" />
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{user.email}}" />
+                <label for="summary">Summary</label>
+                <textarea name="summary" id="summary">{{user.summary}}</textarea>
+            </div>
+        </form>
+        <div class="button">
+            <button id="btn-update" form="edit-form" type="submit">Update</button>
+            <button id="btn-cancel" onclick="window.location.href='/profile'">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const previewElement = document.getElementById('preview-thumbnail');
+    const urlThumbnail = document.getElementById('url-thumbnail').value;
+    previewElement.innerHTML = `<img src="${urlThumbnail}" style="max-width:250px; max-height: 250px;"/>`;
+
+    function handleChange() {
+        const value = URL.createObjectURL(event.target.files[0])
+        previewElement.innerHTML = `<img src="${value}" style="max-width:250px; max-height: 250px;" />`
+    }
+</script>
+
+{{> addedit/footer}}

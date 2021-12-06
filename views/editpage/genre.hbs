@@ -1,0 +1,28 @@
+{{> addedit/header}}
+
+<div class="boxcontainer">
+    <video id="bg-vid" autoplay loop muted src="/public/vid/banner.mp4"></video>
+    <div class="bg-trans"></div>
+    {{#if message}}
+    <div class="flash-message">
+        <p style="margin: 10px 0; color: {{message.color}}; text-align:center;">
+            {{message.message}}
+        </p>
+    </div>
+    {{/if}}
+    <div class="box" style="height: 30%; width: 30%">
+        <h1>{{title}}</h1>
+        <form id="edit-form" action="/edit-genre" method="post">
+            <input type="hidden" value="{{genre.id}}" name="id" />
+            <input type="text" id="name" value="{{genre.name}}" name="name" />
+        </form>
+        <div class="button">
+            <button id="btn-update" form="edit-form" type="submit">Update</button>
+            <button id="btn-cancel" onclick="window.location.href='/genre'">
+                Back
+            </button>
+        </div>
+    </div>
+</div>
+
+{{> addedit/footer}}

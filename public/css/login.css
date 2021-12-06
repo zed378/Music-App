@@ -1,0 +1,165 @@
+@font-face {
+  font-family: comfortaa;
+  src: url("/assets/webfonts/comfortaa.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: comfortaa;
+  background-color: black;
+  color: white;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#bg-vid {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -2;
+}
+
+.bg-trans {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -2;
+  opacity: 0.9;
+}
+
+.cardForm {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+img {
+  max-height: 105px;
+  -webkit-animation: heartbeat 2s ease-in-out infinite both;
+  animation: heartbeat 2s ease-in-out infinite both;
+  margin-bottom: 30px;
+}
+
+.flash-message {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  margin: 10px 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+input {
+  box-sizing: border-box;
+  color: white;
+  width: 100%;
+  height: 2rem;
+  border-bottom: solid 3px white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+  outline: none;
+}
+
+input:focus {
+  border-bottom: solid 1px white;
+}
+
+button {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  color: white;
+  background-color: transparent;
+  border: solid 2px white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: #964380;
+  border: solid 2px #964380;
+}
+
+.a {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: thin;
+}
+
+@-webkit-keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 90%;
+  }
+}
