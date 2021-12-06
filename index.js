@@ -38,6 +38,7 @@ app.set("view engine", "hbs");
 // registering view partial
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 const musicPath = "http://localhost:4000/uploads/music/";
+const coverPath = "http://localhost:4000/uploads/cover/";
 
 // use express-session to set user session
 app.use(
@@ -87,6 +88,7 @@ app.get("/", function (req, res) {
         mus.push({
           ...result,
           sound: musicPath + result.music,
+          cover: coverPath + result.cover_music,
         });
       }
 

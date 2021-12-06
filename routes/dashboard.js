@@ -4,21 +4,27 @@ const router = require("express").Router();
 // set upload path
 const artistPath = "http://localhost:4000/uploads/artist/";
 const musicPath = "http://localhost:4000/uploads/music/";
+const coverPath = "http://localhost:4000/uploads/cover/";
 
 // set routes and render profile page
 router.get("/profile", (req, res) => {
+  // Validate if isLogin is true
+  if (req.session.isLogin !== true) {
+    res.redirect("/");
+  }
+
   res.render("dashboard/index", {
     title: "Dashboard",
     isLogin: req.session.isLogin,
   });
-
-  if (req.session.isLogin !== true) {
-    res.redirect("/");
-  }
 });
 
 // set routes and render my musics page
 router.get("/musics", (req, res) => {
+  if (req.session.isLogin !== true) {
+    res.redirect("/");
+  }
+
   const query = `SELECT * FROM tb_music`;
 
   dbConnection.getConnection((err, conn) => {
@@ -33,6 +39,7 @@ router.get("/musics", (req, res) => {
         sound.push({
           ...result,
           loc: musicPath + result.music,
+          cover: coverPath + result.cover_music,
         });
       }
 
@@ -45,10 +52,6 @@ router.get("/musics", (req, res) => {
 
     conn.release();
   });
-
-  if (req.session.isLogin !== true) {
-    res.redirect("/");
-  }
 });
 
 router.get("/delete-musics/:id", (req, res) => {
@@ -75,42 +78,45 @@ router.get("/delete-musics/:id", (req, res) => {
 
 // set routes and render playlist page
 router.get("/playlist", (req, res) => {
+  if (req.session.isLogin !== true) {
+    res.redirect("/");
+  }
   res.render("dashboard/playlist", {
     title: "My Playlist",
     isLogin: req.session.isLogin,
   });
+});
 
+// set routes and render friend page
+router.get("/friend", (req, res) => {
   if (req.session.isLogin !== true) {
     res.redirect("/");
   }
-});
 
-// set routes and render playlist page
-router.get("/friend", (req, res) => {
   res.render("dashboard/friend", {
     title: "Friend's Music",
     isLogin: req.session.isLogin,
   });
-
-  if (req.session.isLogin !== true) {
-    res.redirect("/");
-  }
 });
 
 // set routes and render summary page
 router.get("/summary", (req, res) => {
+  if (req.session.isLogin !== true) {
+    res.redirect("/");
+  }
+
   res.render("dashboard/summary", {
     title: "Music Summary",
     isLogin: req.session.isLogin,
   });
-
-  if (req.session.isLogin !== true) {
-    res.redirect("/");
-  }
 });
 
 // set routes and render artist page
 router.get("/artist", (req, res) => {
+  if (req.session.isLogin !== true) {
+    res.redirect("/");
+  }
+
   const query = `SELECT * FROM tb_artis`;
 
   dbConnection.getConnection((err, conn) => {
@@ -137,10 +143,6 @@ router.get("/artist", (req, res) => {
 
     conn.release();
   });
-
-  if (req.session.isLogin !== true) {
-    res.redirect("/");
-  }
 });
 
 router.get("/delete-artist/:id", (req, res) => {
@@ -167,6 +169,10 @@ router.get("/delete-artist/:id", (req, res) => {
 
 // set routes and render genre page
 router.get("/genre", (req, res) => {
+  if (req.session.isLogin !== true) {
+    res.redirect("/");
+  }
+
   const query = `SELECT * FROM tb_genre`;
 
   dbConnection.getConnection((err, conn) => {
@@ -192,10 +198,6 @@ router.get("/genre", (req, res) => {
 
     conn.release();
   });
-
-  if (req.session.isLogin !== true) {
-    res.redirect("/");
-  }
 });
 
 router.get("/delete-genre/:id", (req, res) => {

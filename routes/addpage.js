@@ -14,44 +14,49 @@ router.get("/add-musics", (req, res) => {
   }
 });
 
-router.post("/add-musics", uploadFiles.musicData("music"), (req, res) => {
-  const { title } = req.body;
+router.post(
+  "/add-musics",
+  uploadFiles.musicData("image", "music"),
+  (req, res) => {
+    const { title } = req.body;
 
-  // catch image filename
-  const music = req.file.filename;
+    // catch image filename
+    const music = req.files.music[0].filename;
+    const image = req.files.image[0].filename;
 
-  // hold query
-  const query = `INSERT INTO tb_music (title, music) VALUES ("${title}", "${music}")`;
+    // hold query
+    const query = `INSERT INTO tb_music (title, music, cover_music) VALUES ("${title}", "${music}", "${image}")`;
 
-  // verif if input is blank
-  if (title == "" || music == "") {
-    req.session.message = {
-      color: "red",
-      message: "Input must be filled",
-    };
+    // verif if input is blank
+    if (title == "" || music == "") {
+      req.session.message = {
+        color: "red",
+        message: "Input must be filled",
+      };
 
-    res.redirect("/add-musics");
-    return;
-  }
+      res.redirect("/add-musics");
+      return;
+    }
 
-  dbConnection.getConnection((err, conn) => {
-    if (err) throw err;
+    dbConnection.getConnection((err, conn) => {
+      if (err) throw err;
 
-    conn.query(query, (err, results) => {
-      if (err) {
-        res.redirect("/add-musics");
-      } else {
-        req.session.message = {
-          color: "green",
-          message: "Music And Cover succesfully add",
-        };
+      conn.query(query, (err, results) => {
+        if (err) {
+          res.redirect("/add-musics");
+        } else {
+          req.session.message = {
+            color: "green",
+            message: "Music And Cover succesfully add",
+          };
 
-        return res.redirect("/add-musics");
-      }
+          return res.redirect("/add-musics");
+        }
+      });
+      conn.release();
     });
-    conn.release();
-  });
-});
+  }
+);
 
 // set routes and render add artist page
 router.get("/add-artist", (req, res) => {

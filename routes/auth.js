@@ -126,7 +126,7 @@ router.post("/register", (req, res) => {
 });
 
 // logout handler
-router.get("/logout", function (req, res) {
+router.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });

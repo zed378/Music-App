@@ -139,55 +139,69 @@ module.exports = {
     };
   },
 
-  musicData: (musicFile) => {
-    // define upload folder destination
+  musicData: (img, music) => {
+    // define upload destination
     const storage = multer.diskStorage({
-      destination: (req, file, cb) => {
-        // folder name to store music file
-        cb(null, "uploads/music");
+      destination: function (req, file, cb) {
+        if (file.fieldname === img) {
+          cb(null, "uploads/cover");
+        } else if (file.fieldname === music) {
+          cb(null, "uploads/music");
+        }
       },
-      filename: (req, file, cb) => {
-        // rename file upload with adding date as a firstname
+      filename: function (req, file, cb) {
         cb(null, Date.now() + "-" + file.originalname.replace(/\s/g, ""));
       },
     });
 
-    // filtering music extension
-    const fileFilter = (req, file, cb) => {
-      // check if file is exist
-      if (file.fieldname === musicFile) {
-        // define allowed extension
+    const fileFilter = function (req, file, cb) {
+      if (file.fieldname === music) {
         if (!file.originalname.match(/\.(mp3|MP3)$/)) {
-          // if did not match allow extension
           req.fileValidationError = {
-            message: "Only mp3 files are allowed",
+            message: "Only image and mp3 files are allowed",
           };
-          return cb(new Error("Only mp3 files are allowed"), false);
+          return cb(new Error("Only image and mp3 files are allowed"), false);
+        }
+      } else if (file.fieldname === img) {
+        if (
+          !file.originalname.match(
+            /\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|webp|WEBP)$/
+          )
+        ) {
+          req.fileValidationError = {
+            message: "Only image and mp3 files are allowed",
+          };
+          return cb(new Error("Only image and mp3 files are allowed"), false);
         }
       }
       cb(null, true);
     };
 
-    // set max size image file
-    const maxSize = 30 * 1024 * 1024;
+    // set max file size
+    const maxSize = 30 * 1024 * 1000;
 
-    // call multer for upload single file
+    // generate multer upload
     const upload = multer({
       storage,
       fileFilter,
       limits: {
         fileSize: maxSize,
       },
-    }).single(musicFile);
+    });
 
-    // set flash message
+    const uploadMultiple = upload.fields([
+      { name: img, maxCount: 1 },
+      { name: music, maxCount: 1 },
+    ]);
+
+    //middleware
     return (req, res, next) => {
-      upload(req, res, (err) => {
+      uploadMultiple(req, res, function (err) {
         if (err) {
           if (err.code == "LIMIT_FILE_SIZE") {
             req.session.message = {
-              type: "red",
-              message: "Error, max file size 30MB",
+              type: "danger",
+              message: "Error, max file size 10MB",
             };
             return res.redirect(req.originalUrl);
           }

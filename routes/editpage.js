@@ -14,13 +14,13 @@ router.get("/edit-profile", (req, res) => {
   });
 
   if (req.session.isLogin !== true) {
-    res.redirect("/");
+    res.redirect("index");
   }
 });
 
 router.post("/edit-profile", uploadFiles.profileImg("image"), (req, res) => {
   const { id, name, email, summary, oldImage } = req.body;
-  const image = oldImage.replace(profilePath, "");
+  let image = oldImage.replace(profilePath, "");
 
   // catch only image filename
   if (req.file) {
@@ -36,7 +36,7 @@ router.post("/edit-profile", uploadFiles.profileImg("image"), (req, res) => {
         message: "Connection Error",
       };
 
-      res.redirect(`/edit-profile}`);
+      res.redirect(`/edit-profile`);
     }
 
     conn.query(query, (err, results) => {
@@ -92,7 +92,7 @@ router.get("/edit-artist/:id", (req, res) => {
 
 router.post("/edit-artist", uploadFiles.artistImg("image"), (req, res) => {
   const { id, name, date, about, oldImage } = req.body;
-  const image = oldImage.replace(artistPath, "");
+  let image = oldImage.replace(artistPath, "");
 
   // catch only image filename
   if (req.file) {

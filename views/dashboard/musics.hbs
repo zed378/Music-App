@@ -13,6 +13,7 @@
             {{#each sound}}
             <div class="col-xl-3 col-sm-12 grid-margin">
                 <div class="card text-center p-3" id="music-card">
+                    <img class="img-fluid" src="{{this.cover}}">
                     <h3>{{this.title}}</h3>
                     <audio id="my-music" controls>
                         <source src="{{this.loc}}">
