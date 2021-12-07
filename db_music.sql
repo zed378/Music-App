@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Des 2021 pada 08.23
+-- Waktu pembuatan: 06 Des 2021 pada 03.03
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.1
 
@@ -72,7 +72,7 @@ CREATE TABLE `tb_music` (
 --
 
 INSERT INTO `tb_music` (`id`, `title`, `music`, `cover_music`, `created_at`, `update_at`, `genre_id`, `artis_id`) VALUES
-(8, 'Astronaut In The Ocean', '1638774462645-MaskedWolf-AstronautInTheOcean.mp3', '1638774462632-cover.webp', '2021-12-06 07:07:42', '2021-12-06 07:07:42', NULL, NULL);
+(7, 'Astronaut', '1638753165195-MaskedWolf-AstronautInTheOcean.mp3', NULL, '2021-12-06 01:12:45', '2021-12-06 01:12:45', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -164,7 +164,7 @@ ALTER TABLE `tb_genre`
 -- AUTO_INCREMENT untuk tabel `tb_music`
 --
 ALTER TABLE `tb_music`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_playlist`
@@ -176,7 +176,7 @@ ALTER TABLE `tb_playlist`
 -- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
